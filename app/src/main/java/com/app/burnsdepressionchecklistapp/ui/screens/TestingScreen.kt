@@ -1,16 +1,16 @@
 package com.app.burnsdepressionchecklistapp.ui.screens
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -24,7 +24,6 @@ import com.app.burnsdepressionchecklistapp.ui.components.BurnsDepressionChecklis
 fun TestingScreen(
     navController: NavController
 ) {
-    val context = LocalContext.current
     val state = TestingHelper.uiState
     Scaffold(
         topBar = {
@@ -50,9 +49,11 @@ fun TestingScreen(
                 Checklist(numberOfQuestion = numberOfQuestion)
             }
             is TestingScreenUiState.QuestionsEnded -> {
-                //TODO: Make ResultScreen
-                Toast.makeText(context, "${TestingHelper.total}", Toast.LENGTH_LONG).show()
-                navController.popBackStack()
+                GoToResults(
+                    onButtonClick = {
+                        navController.navigate("result/${TestingHelper.total}")
+                    }
+                )
             }
         }
     }
@@ -105,6 +106,22 @@ fun Checklist(numberOfQuestion: Int) {
                 buttonText = "Крайне часто"
             )
         }
+    }
+}
+
+@Composable
+fun GoToResults(
+    onButtonClick: () -> Unit
+) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        BurnsDepressionChecklistButton(
+            onClick = onButtonClick,
+            buttonText = "К результатам"
+        )
     }
 }
 
@@ -162,7 +179,7 @@ object TestingHelper {
         private set
 
     fun nextQuestion(answer: Answer) {
-        uiState = if (currentQuestion < questions.size) {
+        uiState = if (currentQuestion < questions.size - 1) {
             TestingScreenUiState.QuestionDisplayed(++currentQuestion)
         } else {
             TestingScreenUiState.QuestionsEnded

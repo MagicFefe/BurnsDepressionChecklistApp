@@ -7,17 +7,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.app.burnsdepressionchecklistapp.R
 import com.app.burnsdepressionchecklistapp.ui.theme.BurnsDepressionChecklistAppTheme
 
 
 @Composable
 fun BurnsDepressionChecklistTopBar(
     modifier: Modifier = Modifier,
-    title: @Composable BoxScope.() -> Unit = {},
+    title: String = "",
     navigationIcon: @Composable (BoxScope.() -> Unit)? = null,
 ) {
     Surface(
@@ -26,29 +29,32 @@ fun BurnsDepressionChecklistTopBar(
             .fillMaxWidth(),
         color = MaterialTheme.colors.primary
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically
+        Box(
+            modifier = Modifier,
         ) {
             if (navigationIcon != null) {
                 Box(
-                    modifier = TitleInset,
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .width(72.dp)
+                        .padding(4.dp),
                     contentAlignment = Alignment.CenterStart,
                     content = navigationIcon
                 )
-            } else {
-                Spacer(TitleInset)
             }
             Box(
-                content = title
-            )
+                modifier = Modifier.align(Alignment.Center)
+            ) {
+                Text(
+                    text = title,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center
+                )
+            }
         }
     }
 }
-
-private val TitleInset = Modifier
-    .fillMaxHeight()
-    .width(72.dp)
-    .padding(4.dp)
 
 @Preview
 @Composable
@@ -56,12 +62,14 @@ fun BurnsDepressionChecklistTopBar_Preview() {
     BurnsDepressionChecklistAppTheme {
         Scaffold {
             BurnsDepressionChecklistTopBar(
-                title = {
-                    Text(
-                        text = "Шкала депрессии Бернса",
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold
-                    )
+                title = "Шкала депрессии Бернса",
+                navigationIcon = {
+                    IconButton(onClick = {}) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_baseline_arrow_back_ios_new_24),
+                            contentDescription = null
+                        )
+                    }
                 }
             )
         }
