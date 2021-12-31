@@ -1,4 +1,4 @@
-package com.app.burnsdepressionchecklistapp.ui.screens
+package com.app.burnsdepressionchecklistapp.presentation.ui.screens.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -9,17 +9,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.app.burnsdepressionchecklistapp.ui.components.BurnsDepressionChecklistButton
-import com.app.burnsdepressionchecklistapp.ui.components.BurnsDepressionChecklistTopBar
-import com.app.burnsdepressionchecklistapp.ui.theme.BurnsDepressionChecklistAppTheme
+import com.app.burnsdepressionchecklistapp.presentation.ui.components.QuestionnaireButton
+import com.app.burnsdepressionchecklistapp.presentation.ui.components.QuestionnaireTopBar
+import com.app.burnsdepressionchecklistapp.presentation.ui.theme.BurnsDepressionChecklistAppTheme
 
 @Composable
-fun MainScreen(
+fun HomeScreen(
     navController: NavController
 ) {
     Scaffold(
         topBar = {
-            BurnsDepressionChecklistTopBar(
+            QuestionnaireTopBar(
                 title = "Шкала депрессии Бернса"
             )
         }
@@ -28,7 +28,7 @@ fun MainScreen(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center
         ) {
-            BurnsDepressionChecklistButton(
+            QuestionnaireButton(
                 buttonText = "Пройти тест",
                 onClick = {
                     navController.navigate("testing")
@@ -40,8 +40,8 @@ fun MainScreen(
 
 @Composable
 @Preview
-fun MainScreen_Preview() {
+fun HomeScreen_Preview() {
     BurnsDepressionChecklistAppTheme {
-        MainScreen(navController = rememberNavController())
+        HomeScreen(navController = rememberNavController())
     }
 }

@@ -1,8 +1,21 @@
-package com.app.burnsdepressionchecklistapp.ui.components
+package com.app.burnsdepressionchecklistapp.presentation.ui.components
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -14,11 +27,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.burnsdepressionchecklistapp.R
-import com.app.burnsdepressionchecklistapp.ui.theme.BurnsDepressionChecklistAppTheme
+import com.app.burnsdepressionchecklistapp.presentation.ui.theme.BurnsDepressionChecklistAppTheme
 
 
 @Composable
-fun BurnsDepressionChecklistTopBar(
+fun QuestionnaireTopBar(
     modifier: Modifier = Modifier,
     title: String = "",
     navigationIcon: @Composable (BoxScope.() -> Unit)? = null,
@@ -29,9 +42,7 @@ fun BurnsDepressionChecklistTopBar(
             .fillMaxWidth(),
         color = MaterialTheme.colors.primary
     ) {
-        Box(
-            modifier = Modifier,
-        ) {
+        Box {
             if (navigationIcon != null) {
                 Box(
                     modifier = Modifier
@@ -58,10 +69,10 @@ fun BurnsDepressionChecklistTopBar(
 
 @Preview
 @Composable
-fun BurnsDepressionChecklistTopBar_Preview() {
+fun QuestionnaireTopBar_Preview() {
     BurnsDepressionChecklistAppTheme {
         Scaffold {
-            BurnsDepressionChecklistTopBar(
+            QuestionnaireTopBar(
                 title = "Шкала депрессии Бернса",
                 navigationIcon = {
                     IconButton(onClick = {}) {
@@ -77,7 +88,7 @@ fun BurnsDepressionChecklistTopBar_Preview() {
 }
 
 @Composable
-fun BurnsDepressionChecklistButton(
+fun QuestionnaireButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
     buttonText: String

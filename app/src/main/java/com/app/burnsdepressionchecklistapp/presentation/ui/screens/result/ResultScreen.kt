@@ -1,4 +1,4 @@
-package com.app.burnsdepressionchecklistapp.ui.screens
+package com.app.burnsdepressionchecklistapp.presentation.ui.screens.result
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,8 +20,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.app.burnsdepressionchecklistapp.R
-import com.app.burnsdepressionchecklistapp.ui.components.BurnsDepressionChecklistTopBar
-import com.app.burnsdepressionchecklistapp.ui.theme.BurnsDepressionChecklistAppTheme
+import com.app.burnsdepressionchecklistapp.presentation.ui.components.QuestionnaireTopBar
+import com.app.burnsdepressionchecklistapp.presentation.ui.theme.BurnsDepressionChecklistAppTheme
 
 @Composable
 fun ResultScreen(
@@ -30,7 +30,7 @@ fun ResultScreen(
 ) {
     Scaffold(
         topBar = {
-            BurnsDepressionChecklistTopBar(
+            QuestionnaireTopBar(
                 title = "Результаты",
                 navigationIcon = {
                     IconButton(onClick = {

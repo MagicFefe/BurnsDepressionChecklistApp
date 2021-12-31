@@ -1,8 +1,7 @@
-package com.app.burnsdepressionchecklistapp.ui.theme
+package com.app.burnsdepressionchecklistapp.presentation.ui.theme
 
 import android.annotation.SuppressLint
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
